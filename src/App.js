@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useMemo, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SearchContext } from './context/SearchContext';
+
+// Import Pages
+import Search from './pages/Search';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [input, setInput] = useState('');
+  const value = useMemo(() => ({ input, setInput }), [input]);
+
+	return (
+		<SearchContext.Provider value={value}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Search />} />
+				</Routes>
+			</BrowserRouter>
+		</SearchContext.Provider>
+	);
 }
 
 export default App;
