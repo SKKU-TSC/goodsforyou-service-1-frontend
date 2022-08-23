@@ -29,7 +29,28 @@ export default function Akinator() {
             setUsingIndex={setUsingIndex}
           />
         )}
-        <button onClick={() => navigate("/")}>BACK</button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: "50px",
+            marginRight: "10px",
+          }}
+        >
+          <button
+            style={{
+              backgroundColor: "#6937a1",
+              border: "none",
+              width: "80px",
+              height: "40px",
+              borderRadius: "5px",
+              color: "white",
+            }}
+            onClick={() => navigate("/")}
+          >
+            돌아가기
+          </button>
+        </div>
         <Navbar />
       </MobileDisplay>
     </>

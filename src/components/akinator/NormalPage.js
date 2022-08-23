@@ -60,16 +60,66 @@ export default function NormalPage({
         <FinalPage result={result} />
       ) : (
         <>
-          <h3>{akinatorLogic[searchOption[0]][usingIndex]}</h3>
-          <button type="button" onClick={() => handleOnClick("YES")}>
-            네
-          </button>
-          <button type="button" onClick={() => handleOnClick("NO")}>
-            아니요
-          </button>
-          <button type="button" onClick={() => handleOnClick("?")}>
-            모르겠다
-          </button>
+          <h3 style={{ textAlign: "center" }}>
+            {akinatorLogic[searchOption[0]][usingIndex]}
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "50px",
+            }}
+          >
+            <button
+              style={{
+                backgroundColor: "#6937a1",
+                border: "none",
+                width: "100px",
+                minWidth: "100px",
+                height: "40px",
+                margin: "5px",
+                color: "white",
+                borderRadius: "5px",
+              }}
+              type="button"
+              onClick={() => handleOnClick("YES")}
+            >
+              네
+            </button>
+            <button
+              style={{
+                backgroundColor: "#6937a1",
+                border: "none",
+                width: "100px",
+                minWidth: "100px",
+                height: "40px",
+                margin: "5px",
+                color: "white",
+                borderRadius: "5px",
+              }}
+              type="button"
+              onClick={() => handleOnClick("NO")}
+            >
+              아니요
+            </button>
+            <button
+              style={{
+                backgroundColor: "#6937a1",
+                border: "none",
+                width: "100px",
+                minWidth: "100px",
+                height: "40px",
+                margin: "5px",
+                color: "white",
+                borderRadius: "5px",
+              }}
+              type="button"
+              onClick={() => handleOnClick("?")}
+            >
+              모르겠다
+            </button>
+          </div>
         </>
       )}
     </>
