@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
 
-const useLocalStorage = (key, defaultValue, type) => {
+const useLocalStorage = (key, defaultValue) => {
 	const [value, setValue] = useState(() => {
 		let currentValue;
 
 		try {
-			if (type !== 'array') {
-				currentValue = JSON.parse(
-					localStorage.getItem(key) || String(defaultValue)
-				);
-			} else {
-				currentValue = defaultValue;
-			}
+			currentValue = localStorage.getItem(key) || defaultValue;
+			console.log(currentValue);
+			console.log(value)
 		} catch (error) {
 			currentValue = defaultValue;
 		}
@@ -20,7 +16,7 @@ const useLocalStorage = (key, defaultValue, type) => {
 	});
 
 	useEffect(() => {
-		localStorage.setItem(key, JSON.stringify(value));
+		localStorage.setItem(key, value);
 	}, [value, key]);
 
 	return [value, setValue];

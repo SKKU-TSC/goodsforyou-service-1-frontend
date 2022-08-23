@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { SocketContext } from '../context/SocketContext';
+import { SearchContext } from '../context/SearchContext';
 
 import Navbar from '../components/common/Navbar';
 import MobileDisplay from '../components/common/MobileDisplay';
 import Header from '../components/common/Header';
 import SearchInput from '../components/search/SearchInput';
-import { SearchContext } from '../context/SearchContext';
 import TopTab from '../components/search/TopTab';
 import SearchBox from '../components/search/SearchBox';
 
@@ -19,6 +20,23 @@ const SearchWrapper = styled.div`
 export default function Search() {
 	const { input, setInput } = useContext(SearchContext);
 	const [searchResult, setSearchResult] = useState([]);
+	const socket = useContext(SocketContext);
+
+	useEffect(() => {
+		socket.on('connect', () => {
+			console.log('Connected to server');
+		});
+
+		socket.on('searchResult', (data) => {
+			setSearchResult(data);
+			console.log(searchResult)
+		})
+
+		return () => {
+			socket.off('connect');
+			socket.off('display');
+		};
+	}, [socket]);
 
 	return (
 		<>
@@ -28,7 +46,7 @@ export default function Search() {
 					<SearchInput />
 				</SearchWrapper>
 				{input ? <SearchBox searchResult={searchResult} /> : <TopTab />}
-		
+
 				<Navbar />
 			</MobileDisplay>
 		</>

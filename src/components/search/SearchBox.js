@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useContext, useState } from 'react';
+
 
 const Container = styled.div`
 	padding: 12px 20px 0px;
@@ -10,7 +10,7 @@ const Container = styled.div`
 	::-webkit-scrollbar {
 		display: none;
 	}
-    height: 650px;
+	height: 650px;
 `;
 
 const Header = styled.p`
@@ -42,7 +42,10 @@ const NoResultText = styled.p`
 const Box = styled.div`
 	padding-top: 800px;
 `;
+
 export default function SearchBox(props) {
+
+
 	return (
 		<Container>
 			<Header>상품 바로가기</Header>
