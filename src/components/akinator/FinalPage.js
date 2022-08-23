@@ -33,6 +33,32 @@ export default function FinalPage({ result }) {
           </button>
         ))}
       </div>
+      <h4 style={{ textAlign: "center" }}>
+        원하는 결과를 못찾았나요? 다시 해보세요!!
+      </h4>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <button
+          style={{
+            backgroundColor: "#6937a1",
+            border: "none",
+            width: "100px",
+            minWidth: "100px",
+            height: "35px",
+            margin: "5px",
+            color: "white",
+            borderRadius: "5px",
+          }}
+          onClick={() => window.location.reload()}
+        >
+          다시하기
+        </button>
+      </div>
     </>
   );
 }

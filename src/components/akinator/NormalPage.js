@@ -3,6 +3,7 @@ import akinatorLogic from "../../utils/akinatorLogic";
 import { getResult } from "../../apis/akinator";
 import { useNavigate } from "react-router-dom";
 import FinalPage from "./FinalPage";
+import akinatorPre from "../../utils/akinatorPresentation";
 
 export default function NormalPage({
   searchOption,
@@ -61,7 +62,9 @@ export default function NormalPage({
       ) : (
         <>
           <h3 style={{ textAlign: "center" }}>
-            {akinatorLogic[searchOption[0]][usingIndex]}
+            {akinatorPre[akinatorLogic[searchOption[0]][usingIndex]]
+              ? akinatorPre[akinatorLogic[searchOption[0]][usingIndex]]
+              : akinatorLogic[searchOption[0]][usingIndex]}
           </h3>
           <div
             style={{
