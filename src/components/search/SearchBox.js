@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-
 const Container = styled.div`
 	padding: 12px 20px 0px;
 	background-color: rgb(255, 255, 255);
@@ -43,22 +42,24 @@ const Box = styled.div`
 	padding-top: 800px;
 `;
 
-export default function SearchBox(props) {
-
-
+export default function SearchBox({ searchResult }) {
 	return (
 		<Container>
 			<Header>상품 바로가기</Header>
-			{props.searchResult.length === 0 ? (
+			{searchResult.length === 0 ? (
 				<NoResultContainer>
 					<NoResultText>검색 결과가 없습니다.</NoResultText>
 				</NoResultContainer>
 			) : (
-				<div></div>
+				<>
+					{searchResult.map((item, index) => (
+						<div key={index}>{item.itemName}</div>
+					))}
+				</>
 			)}
 			<Box />
 			<Header>키워드 추천 상품</Header>
-			{props.searchResult.length === 0 ? (
+			{searchResult.length === 0 ? (
 				<NoResultContainer>
 					<NoResultText>검색 결과가 없습니다.</NoResultText>
 				</NoResultContainer>

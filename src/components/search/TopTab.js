@@ -103,7 +103,6 @@ export default function TopTab() {
 
 	const filterArray = (value) => {
 		const filteredArray = recentKeywords.filter((item) => !item.includes(value));
-		console.log(filteredArray);
 		setRecentKeywords(filteredArray);
 	};
 

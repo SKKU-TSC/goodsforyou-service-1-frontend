@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 import { SocketContext } from '../../context/SocketContext';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -81,7 +81,7 @@ const CancelBtn = styled.button`
 
 export default function SearchInput() {
 	const socket = useContext(SocketContext);
-	
+
 	const { input, setInput } = useContext(SearchContext);
 	const [recentKeywords, setRecentKeywords] = useLocalStorage(
 		'recentKeywords',
@@ -97,6 +97,10 @@ export default function SearchInput() {
 		console.log(recentKeywords);
 	};
 
+	useEffect(() => {
+		socket.emit('search', input.toString());
+	}, [input]);
+
 	return (
 		<SearchContainer>
 			<Wrapper>
@@ -106,8 +110,6 @@ export default function SearchInput() {
 					value={input}
 					onChange={(e) => {
 						setInput(e.target.value);
-						console.log(input)
-						socket.emit('search', input.toString());
 					}}
 				/>
 				{input !== '' && (
@@ -116,7 +118,6 @@ export default function SearchInput() {
 				<SearchBtn
 					onClick={(e) => {
 						addRecentKeyword(input);
-						console.log(input);
 					}}
 				/>
 			</Wrapper>

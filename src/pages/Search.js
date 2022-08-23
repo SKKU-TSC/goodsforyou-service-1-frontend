@@ -28,8 +28,7 @@ export default function Search() {
 		});
 
 		socket.on('searchResult', (data) => {
-			setSearchResult(data);
-			console.log(searchResult)
+			setSearchResult(data.matchedItemsByItem);
 		})
 
 		return () => {
