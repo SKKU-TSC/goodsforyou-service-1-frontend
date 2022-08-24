@@ -20,6 +20,7 @@ const SearchWrapper = styled.div`
 export default function Search() {
 	const { input, setInput } = useContext(SearchContext);
 	const [searchResult, setSearchResult] = useState([]);
+	const [recommendResult, setRecommendResult] = useState([]);
 	const socket = useContext(SocketContext);
 
 	useEffect(() => {
@@ -29,6 +30,7 @@ export default function Search() {
 
 		socket.on('searchResult', (data) => {
 			setSearchResult(data.matchedItemsByItem);
+			setRecommendResult(data.recommendedItems);
 		})
 
 		return () => {
@@ -44,7 +46,7 @@ export default function Search() {
 				<SearchWrapper>
 					<SearchInput />
 				</SearchWrapper>
-				{input ? <SearchBox searchResult={searchResult} /> : <TopTab />}
+				{input ? <SearchBox searchResult={searchResult} recommendResult={recommendResult} /> : <TopTab />}
 
 				<Navbar />
 			</MobileDisplay>

@@ -42,7 +42,7 @@ const Box = styled.div`
 	padding-top: 800px;
 `;
 
-export default function SearchBox({ searchResult }) {
+export default function SearchBox({ searchResult, recommendResult }) {
 	return (
 		<Container>
 			<Header>상품 바로가기</Header>
@@ -59,12 +59,16 @@ export default function SearchBox({ searchResult }) {
 			)}
 			<Box />
 			<Header>키워드 추천 상품</Header>
-			{searchResult.length === 0 ? (
+			{recommendResult.length === 0 ? (
 				<NoResultContainer>
 					<NoResultText>검색 결과가 없습니다.</NoResultText>
 				</NoResultContainer>
 			) : (
-				<div></div>
+				<>
+					{recommendResult.map((item, index) => (
+						<div key={index}>{item.itemName}</div>
+					))}
+				</>
 			)}
 		</Container>
 	);
