@@ -67,7 +67,7 @@ export default function SearchBox({ searchResult, recommendResult }) {
 			) : (
 				<>
 					{recommendResult.map((item, index) => (
-						<div key={index}>{item.itemName}</div>
+						<div key={index}>{item.item.itemName}</div>
 					))}
 				</>
 			)}
