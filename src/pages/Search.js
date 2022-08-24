@@ -29,6 +29,7 @@ export default function Search() {
 		});
 
 		socket.on('searchResult', (data) => {
+			console.log(data)
 			setSearchResult(data.matchedItemsByItem);
 			setRecommendResult(data.matchedItemsByFeature);
 		})
