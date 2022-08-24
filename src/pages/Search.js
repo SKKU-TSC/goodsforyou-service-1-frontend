@@ -29,10 +29,15 @@ export default function Search() {
 		});
 
 		socket.on('searchResult', (data) => {
-			console.log(data)
+			console.log(data);
 			setSearchResult(data.matchedItemsByItem);
-			setRecommendResult(data.matchedItemsByFeature);
-		})
+			let uniqueSet = [
+				...new Set(data.matchedItemsByFeature.map((item) => item.itemName)),
+			];
+
+			console.log(uniqueSet);
+			setRecommendResult(uniqueSet);
+		});
 
 		return () => {
 			socket.off('connect');
@@ -47,11 +52,17 @@ export default function Search() {
 				<SearchWrapper>
 					<SearchInput />
 				</SearchWrapper>
-				{input ? <SearchBox searchResult={searchResult} recommendResult={recommendResult} /> : <TopTab />}
+				{input ? (
+					<SearchBox
+						searchResult={searchResult}
+						recommendResult={recommendResult}
+					/>
+				) : (
+					<TopTab />
+				)}
 
 				<Navbar />
 			</MobileDisplay>
 		</>
 	);
 }
-
