@@ -43,6 +43,7 @@ const Box = styled.div`
 `;
 
 export default function SearchBox({ searchResult, recommendResult }) {
+	console.log(recommendResult);
 	return (
 		<Container>
 			<Header>상품 바로가기</Header>
