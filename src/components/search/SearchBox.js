@@ -39,7 +39,7 @@ const NoResultText = styled.p`
 `;
 
 const Box = styled.div`
-	padding-top: 800px;
+
 `;
 
 export default function SearchBox({ searchResult, recommendResult }) {
