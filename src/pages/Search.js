@@ -30,7 +30,7 @@ export default function Search() {
 
 		socket.on('searchResult', (data) => {
 			setSearchResult(data.matchedItemsByItem);
-			setRecommendResult(data.recommendedItems);
+			setRecommendResult(data.matchedItemsByFeature);
 		})
 
 		return () => {
