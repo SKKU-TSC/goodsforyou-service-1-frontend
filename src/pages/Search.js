@@ -31,9 +31,14 @@ export default function Search() {
 		socket.on('searchResult', (data) => {
 			console.log(data);
 			setSearchResult(data.matchedItemsByItem);
-			let uniqueSet = [
-				...new Set(data.matchedItemsByFeature.map((item) => item.itemName)),
-			];
+			const uniqueSet = data.matchedItemsByFeature.reduce((acc, current) => {
+				const x = acc.find(item => item.itemName === current.itemName);
+				if (!x) {
+				  return acc.concat([current]);
+				} else {
+				  return acc;
+				}
+			  }, []);
 
 			console.log(uniqueSet);
 			setRecommendResult(uniqueSet);
