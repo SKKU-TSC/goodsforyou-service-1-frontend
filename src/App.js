@@ -6,6 +6,7 @@ import { SocketContext, socket } from "./context/SocketContext";
 // Import Pages
 import Search from "./pages/Search";
 import Akinator from "./pages/Akinator";
+import Admin from "./pages/Admin";
 
 function App() {
   const [input, setInput] = useState("");
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Search />} />
             <Route path="/akinator" element={<Akinator />} />
+            <Route path="/Admin" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </SocketContext.Provider>

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import React, {useCallback} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const OuterContainer = styled.div`
 	display: flex;
@@ -79,18 +79,35 @@ const ButtonDiv = styled.div`
 
 export default function MobileDisplay(props) {
 	const navigate = useNavigate();
+	const location = useLocation();
+	console.log(location.pathname);
 
-	const handleHome = useCallback(() => navigate('/', { replace: true }), [navigate]);
-	const handleAkinator = useCallback(() => navigate('/akinator', { replace: true }), [navigate]);
-	
+	const handleHome = useCallback(
+		() => navigate('/', { replace: true }),
+		[navigate]
+	);
+	const handleAkinator = useCallback(
+		() => navigate('/akinator', { replace: true }),
+		[navigate]
+	);
+	const handleAdmin = useCallback(
+		() => navigate('/admin', { replace: true }),
+		[navigate]
+	);
+
 	return (
 		<OuterContainer>
 			<h1>Kurly App Emulator</h1>
 			<ButtonDiv>
 				<CustomButton onClick={handleHome}>Search</CustomButton>
 				<CustomButton onClick={handleAkinator}>Akinator</CustomButton>
+				<CustomButton onClick={handleAdmin}>Admin</CustomButton>
 			</ButtonDiv>
-			<InnerContainer>{props.children}</InnerContainer>
+			{location.pathname === '/admin' ? (
+				<>{props.children}</>
+			) : (
+				<InnerContainer>{props.children}</InnerContainer>
+			)}
 		</OuterContainer>
 	);
 }
