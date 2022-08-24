@@ -42,6 +42,10 @@ const Box = styled.div`
 
 `;
 
+const ResultText = styled.p`
+	padding-bottom: 10px;
+`
+
 export default function SearchBox({ searchResult, recommendResult }) {
 	console.log(recommendResult);
 	return (
@@ -54,7 +58,7 @@ export default function SearchBox({ searchResult, recommendResult }) {
 			) : (
 				<>
 					{searchResult.map((item, index) => (
-						<div key={index}>{item.itemName}</div>
+						<ResultText key={index}>{item.itemName}</ResultText>
 					))}
 				</>
 			)}
@@ -67,7 +71,7 @@ export default function SearchBox({ searchResult, recommendResult }) {
 			) : (
 				<>
 					{recommendResult.map((item, index) => (
-						<div key={index}>{item.item.itemName}</div>
+						<ResultText key={index}>{item.item.itemName}</ResultText>
 					))}
 				</>
 			)}
